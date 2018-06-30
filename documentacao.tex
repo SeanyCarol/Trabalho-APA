@@ -1,0 +1,52 @@
+\documentclass{article}
+
+\title{Problema do Subconjunto Independente Máximo \\ \large Análise e Projeto de Algoritmos - DCC001}
+\author{André Luiz Vasconcelos Ferreira - 201665571C \\ Felipe Terrana Cazetta - 201635026 \\ Seany Caroliny Oliveira Silva - 201665566C}
+\date{}
+\usepackage{listings}
+\usepackage{mathtools}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Visão geral do programa}
+\subsection{Como compilar e rodar o código}
+O código foi feito em C++. Para compilá-lo em ambiente Linux, basta executar o Shell Script \textit{compiler.sh} (\textit{./compiler.sh} ou \textit{sh ./compiler.sh} em linha de comando). Isso gerará o executável \textit{TrabalhoAPA}; seu formato de execução é
+\begin{lstlisting}
+./TrabalhoAPA <arquivo de texto contendo o grafo>
+\end{lstlisting}
+
+
+
+\subsection{Formato do arquivo de texto contendo o grafo}
+O arquivo de entrada para o programa é um documento de texto em que cada linha contendo 2 inteiros corresponde a uma aresta do grafo, cujos vértices possuem os IDs correspondentes ao números da linha. Exemplo:
+\begin{lstlisting}
+1 3
+2 4
+3 5
+4 5
+\end{lstlisting}
+é um grafo contendo vértices de IDs 1, 2, 3, 4 e 5, em que há arestas entre 1 e 3, 2 e 4, 3 e 5, 4 e 5. O grafo de entrada é não-ponderado, não-direcionado e arestas paralelas e self-loops são descartados durante a execução.
+
+
+\subsection{Estruturas de dados}
+O grafo é representado na forma de lista de adjacências, sendo implementado como uma lista simplesmente encadeada de nós. Cada nó, por sua vez, é uma lista simplesmente encadeada de arestas; e cada aresta conta com uma referência para seu sucessor. As operações de inserção de nó e aresta são simplesmente inserções em lista encadeada.
+
+
+
+
+
+
+
+\section{Resolução do Subconjunto Independente Máximo}
+\subsection{Abordagem utilizada}
+Por se tratar de um problema da classe NP, não se conhece algoritmo determinístico polinomial que gere a solução ótima. Por conta disso, independente do paradigma adotado, sua complexidade de tempo ainda seria exponencial; portanto o algoritmo implementado usa do paradigma de força bruta para gerar todas as combinações entre os vértices. Para cada uma destas combinações é gerado um subgrafo com os vértices da combinação, então verifica-se se o grau deste subgrafo é zero (não há arestas) e se este é o maior subgrafo encontrado, atualizando o subconjunto caso atenda às duas condições. As combinações são geradas usando um conjunto $C = \{c_1, c_2, ..., c_n\}$ de variáveis booleanas, \textit{n} sendo a ordem do grafo. O valor de cada $c_i$ determina se o vértice $v_i$ do grafo original estará presente no subgrafo. \textit{C} é tratado como um número inteiro binário, no qual é somado 1 unidade a cada uma das $2^n$ iterações do algoritmo.
+
+
+
+
+\end{document}
+
